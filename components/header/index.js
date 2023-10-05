@@ -1,3 +1,5 @@
-export default function Footer() {
-  return <div>Header</div>
+import styles from './styles.module.css'
+
+export default function Header() {
+  return <div className={styles.header}>Header</div>
 }
