@@ -117,6 +117,7 @@ import Head from "next/head";
 import Header from "@/components/header";
 import Content from "@/components/content";
 import Footer from "@/components/footer";
+import Layout from "@/components/layout";
 
 export default function Profile({ children, metaTitle, metaDescription }) {
   return (
@@ -131,8 +132,11 @@ export default function Profile({ children, metaTitle, metaDescription }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      Profile
+      <Layout metaTitle="Profile" metaDescription="semua informasi disini mengenai profile">
+        <p>Profile</p>
+      </Layout>
       <Footer />
+
     </div>
   );
 }
