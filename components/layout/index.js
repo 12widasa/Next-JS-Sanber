@@ -132,6 +132,7 @@ export default function Layout({ children, metaTitle, metaDescription }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {children}
+
     </div>
   );
 }
