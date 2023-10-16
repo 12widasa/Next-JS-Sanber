@@ -118,8 +118,17 @@ import Header from "@/components/header";
 import Content from "@/components/content";
 import Footer from "@/components/footer";
 import Layout from "@/components/layout";
+import { useEffect } from "react";
 
 export default function Main({ metaTitle, metaDescription, children }) {
+
+  useEffect(() => {
+    fetch("/api/hello")
+      .then(res => res.json())
+      .then((res) => console.log('response =>', res))
+      .catch((err) => console.log('error =>', err));
+  }, [])
+
   return (
     <div>
       <Head>
