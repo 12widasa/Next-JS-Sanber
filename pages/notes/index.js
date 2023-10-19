@@ -24,8 +24,6 @@ export default function Notes() {
         router.reload()
       }
     } catch (eror) { }
-
-
   }
 
   useEffect(() => {
