@@ -6,10 +6,15 @@ import dynamic from 'next/dynamic';
 import { Box, Button, Flex, Grid, GridItem, Card, CardBody, CardHeader, CardFooter, Heading, Text, } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useQueries } from '@/hooks/useQueries';
 
 const LayoutComponent = dynamic(() => import("@/components/layout"))
 
 export default function Notes() {
+  const { data } = useQueries({
+    prefixUrl: `https://paace-f178cafcae7b.nevacloud.io/api/notes`
+  })
+  console.log('data =>', data)
   const router = useRouter()
   const [notes, setNotes] = useState()
   const HandleDelete = async (id) => {
