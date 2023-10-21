@@ -4,7 +4,7 @@ import { useCallback, useState, useEffect } from "react"
 export const useQueries = ({ prefixUrl = '' } = {}) => {
   const [data, setData] = useState({
     data: null,
-    isLoading: false,
+    isLoading: true,
     isError: false
   })
 
@@ -27,6 +27,7 @@ export const useQueries = ({ prefixUrl = '' } = {}) => {
     }
   }, [])
 
+
   useEffect(() => {
     if (prefixUrl) {
       fetchingData({ url: prefixUrl })
@@ -35,3 +36,4 @@ export const useQueries = ({ prefixUrl = '' } = {}) => {
 
   return { ...data }
 }
+

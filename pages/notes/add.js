@@ -6,10 +6,12 @@ import dynamic from 'next/dynamic';
 import { Input, Textarea, Box, Button, Flex, Grid, GridItem, Card, CardBody, CardHeader, CardFooter, Heading, Text, } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useMutation } from '@/hooks/useMutation';
 
 const LayoutComponent = dynamic(() => import("@/components/layout"))
 
 export default function AddNotes() {
+  const { mutate } = useMutation()
   const router = useRouter()
   const [notes, setNotes] = useState({
     title: '',
@@ -17,20 +19,27 @@ export default function AddNotes() {
   })
 
   const HandleSubmit = async () => {
-    try {
-      const response = await fetch(`https://paace-f178cafcae7b.nevacloud.io/api/notes`, {
-        method: 'POST', headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(notes),
-      }
-      )
-      const result = await response.json()
-      if (result?.success) {
-        router.push("/notes")
-      }
-    } catch (eror) { }
+    // try {
+    //   const response = await fetch(`https://paace-f178cafcae7b.nevacloud.io/api/notes`, {
+    //     method: 'POST', headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify(notes),
+    //   }
+    //   )
+    //   const result = await response.json()
+    //   if (result?.success) {
+    //     router.push("/notes")
+    //   }
+    // } catch (eror) { }
+
+    const response = await mutate({
+      url: `https://paace-f178cafcae7b.nevacloud.io/api/notes`,
+      payload: notes
+    })
+    console.log("response => ", response)
   }
+
   return (
     <div>
       <LayoutComponent metaTitle="Notes">
