@@ -1,17 +1,20 @@
 import { data } from "autoprefixer"
 import { useCallback, useState, useEffect } from "react"
 
-export const useQueries = ({ prefixUrl = '' } = {}) => {
+export const useQueries = ({ prefixUrl = '', headers = {} } = {}) => {
   const [data, setData] = useState({
     data: null,
     isLoading: true,
     isError: false
   })
 
-  const fetchingData = useCallback(async ({ url = ``, method = "GET" } = {}) => {
+  console.log("headers:", headers)
+
+  const fetchingData = useCallback(async ({ url = ``, method = "GET", headers = {} } = {}) => {
     setData({ ...data, isLoading: true })
+
     try {
-      const response = await fetch(url, { method })
+      const response = await fetch(url, { method, headers })
       const result = await response.json();
       setData({
         ...data,
@@ -30,10 +33,12 @@ export const useQueries = ({ prefixUrl = '' } = {}) => {
 
   useEffect(() => {
     if (prefixUrl) {
-      fetchingData({ url: prefixUrl })
+      fetchingData({ url: prefixUrl, headers })
     }
   }, [])
 
   return { ...data }
 }
 
+
+// ... => adalah distructuring
